@@ -8,8 +8,9 @@ def run_sql(sql, params = [])
     db.close
 end
 
-def add_song
+def add_song (song_params)
+    
 end
 
-def add_patch
+def add_patch (patch_params)
 end

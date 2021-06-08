@@ -1,0 +1,14 @@
+<h2><%= patch['patch_name'] %></h2>
+<h1><%= patch['patch_desc'] %></h1>
+
+<ul>
+    <%songs.each do |song| %>
+        <li>
+            <%= song['song_name'] %>
+            <%= song['artist'] %>
+            <%= song['album'] %>
+            <%= song['year'] %>
+            <%= song['song_desc'] %>
+        </li>
+    <% end %>
+</ul>
