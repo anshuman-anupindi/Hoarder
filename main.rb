@@ -35,7 +35,7 @@ get '/patches' do
     sql_themes = "SELECT * FROM themes WHERE theme_id = $1;"
     themes.push(run_sql(sql_themes, [patch['theme_id']])[0]) 
     # sql_themes = "SELECT * FROM themes WHERE (theme_id = $1 AND user_id = $2);"
-    # themes.push(run_sql(sql_themes, [patch['theme_id'], session[:user_id]])[0]) 
+    # themes.push(run_sql(sql_themes, [patch['theme_id'], session[:user_id]])[0])
   end
   erb :patch_list, locals: {patches: patches, themes: themes}
 end
@@ -49,14 +49,16 @@ end
 # submit created patch
 
 post '/patches' do
-  sql_themes = "INSERT INTO themes (theme_name, bg_img_url, main_img_url) VALUES ($1, $2, $3)"
+  sql_themes = "INSERT INTO themes (theme_name, bg_img_url, main_img_url) VALUES ($1, $2, $3);"
   theme_info = [params['theme_name'], params['bg_img_url'], params['main_img_url']]
-
-  sql_patches = "INSERT INTO patches (patch_name, patch_desc, theme_id) VALUES ($1, $2, $3)"
-  patch_info = [params['patch_name'], params['patch_desc'], params['theme_id']]
-
   run_sql(sql_themes, theme_info)
-  run_sql(sql_patch, patch_info)
+
+  sql_theme_id = "SELECT theme_id FROM themes WHERE (theme_name = $1 AND bg_img_url = $2 AND main_img_url = $3);"
+  theme_id = run_sql(sql_theme_id, theme_info)[0]['theme_id']
+
+  sql_patches = "INSERT INTO patches (patch_name, patch_desc, theme_id) VALUES ($1, $2, $3);"
+  patch_info = [params['patch_name'], params['patch_desc'], theme_id]
+  run_sql(sql_patches, patch_info)
 
   redirect '/patches'
 end

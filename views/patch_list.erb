@@ -2,11 +2,13 @@
 
 
 <ul>
-    <%patches.count.times do |patch_num| %>
+    <%patches.each.with_index do |patch, index| %>
         <li>
-            <%=patch_num['patch_name'] %>
-            <%=patch_num['patch_desc'] %>
-            <img src="<%= themes[patch_num]['bg_img_url']%>" alt="mainimg">
+            <%=patch['patch_name'] %>
+            <br>
+            <%=patch['patch_desc'] %>
+            <br>
+            <img src="<%= themes[index]['bg_img_url']%>" alt="mainimg">
         </li>
     <% end %>
 </ul>
