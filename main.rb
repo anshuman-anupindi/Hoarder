@@ -2,23 +2,23 @@ require 'sinatra'
 require 'sinatra/reloader'
 require_relative 'db/helpers.rb'
 
-# enable :sessions
+enable :sessions
 
-# def current_user
-#   if session[:user_id] == nil
-#     return {}
-#   end
-#   user_id = session[:user_id]
-#   run_sql("SELECT * FROM users WHERE id = $1;", [user_id])
-# end
+def current_user
+  if session[:user_id] == nil
+    return {}
+  end
+  user_id = session[:user_id]
+  run_sql("SELECT * FROM users WHERE id = $1;", [user_id])
+end
 
-# def logged_in?
-#   if session[:user_id] == nil
-#     return false
-#   else
-#     return true
-#   end
-# end
+def logged_in?
+  if session[:user_id] == nil
+    return false
+  else
+    return true
+  end
+end
 
 get '/' do
   erb :index
@@ -165,18 +165,36 @@ end
 # edit theme form
 
 get '/themes/:id/edit' do
+  erb :edit_theme_form, locals: {theme: theme_from_id(params['id'])}
 end
+
+# submit edited theme
 
 put '/themes/:id/edit' do
+  sql = "UPDATE themes SET theme_name = $1, main_img_url = $2, bg_img_url = $3 WHERE theme_id = $4"
+  theme_info = [params['theme_name'], params['main_img_url'], params['bg_img_url'], params['id']]
+  run_sql(sql, theme_info)
+
+  redirect '/themes'
 end
+
+# make a new theme
 
 get '/themes/new' do
+  erb :new_theme_form
 end
+
+# submit new theme
 
 post '/themes' do
+  sql = "INSERT INTO themes (theme_name, main_img_url, bg_img_url) VALUES ($1, $2, $3);"
+  theme_info = [params['theme_name'], params['main_img_url'], params['bg_img_url']]
+  run_sql(sql, theme_info)
+
+  redirect '/themes'
 end
 
-# login page
+# LOGIN/SIGNUP - USER CRUD
 
 get '/login' do
 

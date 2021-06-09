@@ -20,3 +20,9 @@ def song_from_id(song_id)
     song_id = [song_id]
     run_sql(sql, song_id)[0]
 end
+
+def theme_from_id(theme_id)
+    sql = "SELECT * FROM themes WHERE theme_id = $1"
+    theme_id = [theme_id]
+    run_sql(sql, theme_id)[0]
+end

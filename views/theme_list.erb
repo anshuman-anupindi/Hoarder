@@ -1,0 +1,13 @@
+<h1>Your Themes</h1>
+
+<ul>
+    <% themes.each do |theme|%>
+        <li>
+            <%= theme['theme_name'] %>
+            <br>
+            <img src="<%= theme['main_img_url'] %>" alt="">
+            <br>
+            <a href="/themes/<%= theme['theme_id'] %>/edit">Edit Theme</a>
+        </li>
+    <% end  %>
+</ul>
