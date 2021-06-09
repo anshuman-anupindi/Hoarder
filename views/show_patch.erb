@@ -1,5 +1,11 @@
 <h2><%= patch['patch_name'] %></h2>
 <h1><%= patch['patch_desc'] %></h1>
+<form action="/patches/<%= patch['patch_id'] %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button id="del">Delete Patch</button>
+</form>
+
+<a href="/patches/<%= patch['patch_id'] %>/edit">Edit Patch</a>
 
 <ul>
     <%songs.each do |song| %>
@@ -9,6 +15,7 @@
             <%= song['album'] %>
             <%= song['year'] %>
             <%= song['song_desc'] %>
+            <a href="/patches/<%= patch['patch_id'] %>/edit">Patch this song</a>
         </li>
     <% end %>
 </ul>

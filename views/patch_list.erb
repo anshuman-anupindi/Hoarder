@@ -4,6 +4,7 @@
 <ul>
     <%patches.each.with_index do |patch, index| %>
         <li>
+            <a href="/patches/<%=patch['patch_id'] %>">View Patch</a>
             <%=patch['patch_name'] %>
             <br>
             <%=patch['patch_desc'] %>

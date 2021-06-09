@@ -2,19 +2,19 @@
 
 <form action="/patches" method="post">
     <label for="">Title</label>
-    <input type="text" name="patch_name">
+    <input type="text" name="patch_name" value="<%= patch['patch_name'] %>">
 
     <label for="">Description</label>
-    <input type="text" name="patch_desc">
+    <input type="text" name="patch_desc" value="<%= patch['patch_desc'] %>">
 
-    <label for="">Theme Name</label>
-    <input type="text" name="theme_name">
+    <label for="select_theme">Select a Theme</label>
+    <select name="theme_name" form="edit_form" id="select_theme">
+        <% themes.each do |theme| %>
+            <option value="<%= theme['theme_id'] %>"> 
+                <%= theme['theme_name'] %>
+            </option>
+        <% end  %>
+    </select>
 
-    <label for="">Background Picture URL</label>
-    <input type="text" name="bg_img_url">
-
-    <label for="">Main Picture URL</label>
-    <input type="text" name="main_img_url">
-
-    <button>Create your patch</button>
+    <button>Submit</button>
 </form>

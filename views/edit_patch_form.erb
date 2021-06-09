@@ -7,23 +7,47 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/patches/<%= patch['patch_id'] %>" method="post" id="edit_form">
         <input type="hidden" name="_method" value="put">
-        
+
         <label for="">Title</label>
-        <input type="text" name="patch_name">
+        <input type="text" name="patch_name" value="<%= patch['patch_name'] %>">
 
         <label for="">Description</label>
-        <input type="text" name="patch_desc">
+        <input type="text" name="patch_desc" value="<%= patch['patch_desc'] %>">
 
         <label for="">Theme Name</label>
-        <input type="text" name="theme_name">
+        <input type="text" name="theme_name" value="random theme">
 
         <label for="">Background Picture URL</label>
-        <input type="text" name="bg_img_url">
+        <input type="text" name="bg_img_url" value="<%= patch['patch_name'] %>">
 
         <label for="">Main Picture URL</label>
-        <input type="text" name="main_img_url">
+        <input type="text" name="main_img_url" value="<%= patch['patch_name'] %>">
+
+        <label for="select_theme">Select a Theme</label>
+        <select name="theme_name" form="edit_form" id="select_theme">
+            <% themes.each do |theme| %>
+                <option value="<%= theme['theme_id'] %>"> 
+                    <%= theme['theme_name'] %>
+                </option>
+            <% end  %>
+        </select>
+
+        <button>Submit</button>
     </form>
+
+    <ul>
+        <% songs.each do |song| %>
+            <li>
+                <%= song['song_name'] %>
+                <%= song['artist'] %>
+                <%= song['album'] %>
+                <%= song['year'] %>
+                <%= song['song_desc'] %> 
+                <a href="/song/<%= song['song_id'] %>/edit">Patch a song</a>
+            </li>
+         <% end  %>
+    </ul>
 </body>
 </html>
