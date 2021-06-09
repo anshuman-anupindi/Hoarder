@@ -6,6 +6,7 @@
 </form>
 
 <a href="/patches/<%= patch['patch_id'] %>/edit">Edit Patch</a>
+<a href="/patches/<%= patch['patch_id'] %>/songs/new">Add a song</a>
 
 <ul>
     <%songs.each do |song| %>
@@ -15,7 +16,7 @@
             <%= song['album'] %>
             <%= song['year'] %>
             <%= song['song_desc'] %>
-            <a href="/patches/<%= patch['patch_id'] %>/edit">Patch this song</a>
+            <a href="/patches/<%= patch['patch_id'] %>/songs/<%= song['song_id']%>">Edit this song</a>
         </li>
     <% end %>
 </ul>

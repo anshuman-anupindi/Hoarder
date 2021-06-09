@@ -1,0 +1,25 @@
+<h1>Edit <%= song['song_name'] %></h1>
+
+<form action="/patches/<%= patch_id %>/songs/<%= song_id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <input type="hidden" name="patch_id" value="<%= patch_id %>">
+    <input type="hidden" name="song_id" value="<%= song_id %>">
+
+    <label for="">Song Title</label>
+    <input type="text" name="song_name" value="<%=song['song_name']  %>">
+
+    <label for="">Artist</label>
+    <input type="text" name="artist" value="<%=song['artist']  %>">
+
+    <label for="">Album</label>
+    <input type="text" name="album" value="<%=song['album']  %>">
+
+    <label for="">Year</label>
+    <input type="text" name="year" value="<%= song['year'] %>">
+
+    <label for="">Song Description</label>
+    <input type="text" name="song_desc" value="<%= song['song_desc'] %>">
+
+    <button>Done</button>
+</form>

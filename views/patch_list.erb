@@ -2,14 +2,15 @@
 
 
 <ul>
+    <a href="/patches/new">Create a Patch</a>
     <%patches.each.with_index do |patch, index| %>
         <li>
-            <a href="/patches/<%=patch['patch_id'] %>">View Patch</a>
+            <a href="/patches/<%=patch['patch_id'] %>"><%=patch['patch_name'] %></a>
             <%=patch['patch_name'] %>
             <br>
             <%=patch['patch_desc'] %>
             <br>
-            <img src="<%= themes[index]['bg_img_url']%>" alt="mainimg">
+            <img src="<%= themes[index]['main_img_url']%>" alt="mainimg">
         </li>
     <% end %>
 </ul>

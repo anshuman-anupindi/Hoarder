@@ -1,0 +1,20 @@
+<h1>Add a song to <%= patch_name['patch_name'] %></h1>
+
+<form action="/patches/<%= patch_id %>/songs" method="post">
+    <label for="">Song Title</label>
+    <input type="text" name="song_name">
+
+    <label for="">Artist</label>
+    <input type="text" name="artist">
+
+    <label for="">Album</label>
+    <input type="text" name="album">
+
+    <label for="">Year</label>
+    <input type="text" name="year">
+
+    <label for="">Song Description</label>
+    <input type="text" name="song_desc">
+
+    <button>Add Song</button>
+</form>

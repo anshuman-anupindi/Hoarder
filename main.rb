@@ -20,8 +20,6 @@ require_relative 'db/helpers.rb'
 #   end
 # end
 
-# home page - sign up, log in
-
 get '/' do
   erb :index
 end
@@ -105,26 +103,78 @@ end
 
 # SONG CRUD
 
-get '/patches/:id/songs/new' do
-  erb :new_song_form
+# new song form
+
+get '/patches/:patch_id/songs/new' do
+  erb :new_song_form, locals: {patch_id: params['patch_id'], patch_name: patch_name(params['patch_id'])}
 end
 
+# submit new song
+
 post '/patches/:patch_id/songs' do
+  sql_songs = "INSERT INTO songs (song_name, song_desc, patch_id, artist, album, year) VALUES ($1,$2,$3,$4,$5,$6)"
+  song_info = [params['song_name'], params['song_desc'], params['patch_id'], params['artist'], params['album'], params['year']]
+  run_sql(sql_songs, song_info)
+
   redirect "/patches/#{params['patch_id']}"
 end
 
-get '/songs/:id/edit' do
-  erb :edit_song_form, locals: {song_id: params['id']}
+# edit song form
+
+get '/patches/:patch_id/songs/:song_id' do
+  song = song_from_id(params['song_id'])
+  erb :edit_song_form, locals: {song_id: params['song_id'], patch_id: params['patch_id'], song: song}
 end
 
-put '/songs/:id' do
+# submit edited song
+
+put '/patches/:patch_id/songs/:song_id' do
+  sql_song = "UPDATE songs SET song_name = $1, song_desc = $2, patch_id = $3, artist = $4, album = $5, year = $6 WHERE song_id = $7"
+  song_info = [params['song_name'], params['song_desc'], params['patch_id'], params['artist'], params['album'], params['year'], params['song_id']]
+  run_sql(sql_song, song_info)
+  redirect "/patches/#{params['patch_id']}"
+end
+
+# delete song
+
+delete '/patches/:patch_id/songs/:song_id' do
+  sql_song = "DELETE FROM songs WHERE song_id = $1"
+  run_sql(sql_song, [params['song_id']])
+  redirect '/patches/:patch_id'
 end
 
 # THEME CRUD
 
+# theme list
 
+get '/themes' do
+  sql_themes = "SELECT * FROM themes;"
+  themes = run_sql(sql_themes)
+  erb :theme_list, locals: {themes: themes}
+end
 
+# theme details viewer
 
+get '/themes/:id' do
+  sql_theme = "SELECT * FROM themes WHERE theme_id = $1;"
+  theme_id = [params['id']]
+  theme = run_sql(sql_theme, theme_id)
+  erb :show_theme, locals: {theme: theme, theme_id: theme_id}
+end
+
+# edit theme form
+
+get '/themes/:id/edit' do
+end
+
+put '/themes/:id/edit' do
+end
+
+get '/themes/new' do
+end
+
+post '/themes' do
+end
 
 # login page
 

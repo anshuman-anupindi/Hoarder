@@ -9,9 +9,14 @@ def run_sql(sql, params = [])
     return res
 end
 
-def add_song (song_params)
-
+def patch_name(patch_id)
+    sql = "SELECT patch_name FROM patches WHERE patch_id = $1"
+    patch_id = [patch_id]
+    run_sql(sql, patch_id)[0]['patch_name']
 end
 
-def add_patch (patch_params)
+def song_from_id(song_id)
+    sql = "SELECT * FROM songs WHERE song_id = $1"
+    song_id = [song_id]
+    run_sql(sql, song_id)[0]
 end
