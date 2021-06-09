@@ -1,14 +1,14 @@
 <h2>Add to your Patchwork</h2>
 
-<form action="/patches" method="post">
+<form action="/patches" method="post" id="new_patch_form">
     <label for="">Title</label>
-    <input type="text" name="patch_name" value="<%= patch['patch_name'] %>">
+    <input type="text" name="patch_name">
 
     <label for="">Description</label>
-    <input type="text" name="patch_desc" value="<%= patch['patch_desc'] %>">
+    <input type="text" name="patch_desc">
 
     <label for="select_theme">Select a Theme</label>
-    <select name="theme_name" form="edit_form" id="select_theme">
+    <select name="theme_id" form="new_patch_form" id="select_theme">
         <% themes.each do |theme| %>
             <option value="<%= theme['theme_id'] %>"> 
                 <%= theme['theme_name'] %>

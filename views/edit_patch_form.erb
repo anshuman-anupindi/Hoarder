@@ -26,7 +26,7 @@
         <input type="text" name="main_img_url" value="<%= patch['patch_name'] %>">
 
         <label for="select_theme">Select a Theme</label>
-        <select name="theme_name" form="edit_form" id="select_theme">
+        <select name="theme_id" form="edit_form" id="select_theme">
             <% themes.each do |theme| %>
                 <option value="<%= theme['theme_id'] %>"> 
                     <%= theme['theme_name'] %>
