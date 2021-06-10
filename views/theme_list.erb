@@ -10,14 +10,16 @@
 </head>
 <body>
     <h1>Your Themes</h1>
-
-    <ul>
-        <a href="/themes/new">Add a Theme</a>
+    <br>
+    <br>
+    <a href='/themes/new'>Add a Theme</a>
+    <br>
+    <ul id="theme_list">
         <% themes.each do |theme|%>
             <li>
-                <%= theme['theme_name'] %>
+                <h4><%= theme['theme_name'] %></h4>
                 <br>
-                <img src="<%= theme['main_img_url'] %>" alt="">
+                <img width="200px" height="200px" src="<%= theme['main_img_url'] %>" alt="">
                 <br>
                 <a href="/themes/<%= theme['theme_id'] %>/edit">Edit Theme</a>
             </li>

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
     <form action="/patches/<%= patch['patch_id'] %>" method="post" id="edit_form">
@@ -15,15 +16,6 @@
 
         <label for="">Description</label>
         <input type="text" name="patch_desc" value="<%= patch['patch_desc'] %>">
-
-        <label for="">Theme Name</label>
-        <input type="text" name="theme_name" value="random theme">
-
-        <label for="">Background Picture URL</label>
-        <input type="text" name="bg_img_url" value="<%= patch['patch_name'] %>">
-
-        <label for="">Main Picture URL</label>
-        <input type="text" name="main_img_url" value="<%= patch['patch_name'] %>">
 
         <label for="select_theme">Select a Theme</label>
         <select name="theme_id" form="edit_form" id="select_theme">
@@ -41,11 +33,16 @@
         <% songs.each do |song| %>
             <li>
                 <%= song['song_name'] %>
+                <br>
                 <%= song['artist'] %>
+                <br>
                 <%= song['album'] %>
+                ,
                 <%= song['year'] %>
+                <br>
+                <br>
                 <%= song['song_desc'] %> 
-                <a href="/song/<%= song['song_id'] %>/edit">Patch a song</a>
+                <a href="/song/<%= song['song_id'] %>/edit">Edit this song</a>
             </li>
          <% end  %>
     </ul>

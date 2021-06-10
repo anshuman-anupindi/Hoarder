@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
+    <a href="/patches/new">Create a Patch</a>
+    <br>
+    <br>
     <h2>Your Patchwork</h2>
-    <ul>
-        <a href="/patches/new">Create a Patch</a>
+    <br>
+    <br>
+    <ul id="patch_list">
         <%patches.each.with_index do |patch, index| %>
             <li>
                 <a href="/patches/<%=patch['patch_id'] %>"><%=patch['patch_name'] %></a>
+                <br>
                 <br>
                 <%=patch['patch_desc'] %>
                 <br>

@@ -96,7 +96,7 @@ get '/patches/:patch_id/edit' do
   patch = res[0]
 
   songs = run_sql("SELECT * FROM songs WHERE patch_id = $1;", patch_id)
-  themes = run_sql("SELECT * FROM themes;")
+  themes = run_sql("SELECT * FROM themes WHERE user_id = #{session[:user_id]};")
   erb :edit_patch_form, locals: {patch: patch, songs: songs, themes: themes}
 end
 
@@ -187,6 +187,14 @@ get '/themes' do
   erb :theme_list, locals: {themes: themes}
 end
 
+# make a new theme
+
+get '/themes/new' do
+  redirect '/login' unless logged_in?
+
+  erb :new_theme_form
+end
+
 # theme details viewer
 
 get '/themes/:id' do
@@ -218,21 +226,13 @@ put '/themes/:id/edit' do
   redirect '/themes'
 end
 
-# make a new theme
-
-get '/themes/new' do
-  redirect '/login' unless logged_in?
-
-  erb :new_theme_form
-end
-
 # submit new theme
 
 post '/themes' do
   redirect '/login' unless logged_in?
 
-  sql = "INSERT INTO themes (theme_name, main_img_url, bg_img_url, user_id) VALUES ($1, $2, $3, #{session[:user_id]});"
-  theme_info = [params['theme_name'], params['main_img_url'], params['bg_img_url']]
+  sql = "INSERT INTO themes (theme_name, main_img_url, bg_img_url, user_id) VALUES ($1, $2, $3, $4);"
+  theme_info = [params['theme_name'], params['main_img_url'], params['bg_img_url'], session[:user_id]]
   run_sql(sql, theme_info)
 
   redirect '/themes'

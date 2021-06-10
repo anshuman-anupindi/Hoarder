@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Patchwork</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='stylesheets/main.css'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav>
-      <img height="70px" width="70px" src="https://scontent.fsyd11-2.fna.fbcdn.net/v/t1.15752-9/190696384_329232998577136_5426101394804747626_n.png?_nc_cat=109&ccb=1-3&_nc_sid=ae9488&_nc_ohc=vTYZGK7dQvEAX8s7Y-y&_nc_ht=scontent.fsyd11-2.fna&oh=7afc89884f5bae81bc359a70321fc764&oe=60E83738">
-      <h1>Patchwork</h1>
-      <% if logged_in? %>
-          Logged in as <%= current_user()['user_name'] %>
+    <section>
+      <img height="100px" width="100px" src="https://scontent.fsyd11-2.fna.fbcdn.net/v/t1.15752-9/190696384_329232998577136_5426101394804747626_n.png?_nc_cat=109&ccb=1-3&_nc_sid=ae9488&_nc_ohc=vTYZGK7dQvEAX8s7Y-y&_nc_ht=scontent.fsyd11-2.fna&oh=7afc89884f5bae81bc359a70321fc764&oe=60E83738">
+      <br>
+      <h1 id="title">Patchwork</h1>
+    </section>
+      <ul>
+        <a href="/patches" class="nav">My Patches</a>
+        <a href="/signup" class="nav">Sign Up</a>
+        <a href="/themes" class="nav">Themes</a>
+      </ul>
+      <% if logged_in? %><h3>Logged in as <%= current_user()['user_name'] %></h3>
           <form action="/session" method="post">
               <input type="hidden" name="_method" value="delete">
-              <button>Log Out</button>
+              <button id="logout_btn">Log Out</button>
           </form>
       <% end %>
-      <ul>
-        <a href="/patches">My Patches</a>
-        <a href="/signup">Sign Up</a>
-        <a href="/themes">Themes</a>
-      </ul>
     </nav>
   </header>
 

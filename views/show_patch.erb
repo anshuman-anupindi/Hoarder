@@ -1,23 +1,45 @@
-<h1><%= patch['patch_name'] %></h1>
-<img src="<%= theme['main_img_url'] %>" height="120px" width="120px">
-<h2><%= patch['patch_desc'] %></h2>
-<form action="/patches/<%= patch['patch_id'] %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button id="del">Delete Patch</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <h1><%= patch['patch_name'] %></h1>
+    <img src="<%= theme['main_img_url'] %>" height="120px" width="120px">
+    <h2><%= patch['patch_desc'] %></h2>
+    <form action="/patches/<%= patch['patch_id'] %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button id="del">Delete Patch</button>
+    </form>
+    <br>
+    <br>
 
-<a href="/patches/<%= patch['patch_id'] %>/edit">Edit Patch</a>
-<a href="/patches/<%= patch['patch_id'] %>/songs/new">Add a song</a>
-
-<ul>
-    <%songs.each do |song| %>
-        <li>
-            <%= song['song_name'] %>
-            <%= song['artist'] %>
-            <%= song['album'] %>
-            <%= song['year'] %>
-            <%= song['song_desc'] %>
-            <a href="/patches/<%= patch['patch_id'] %>/songs/<%= song['song_id']%>">Edit this song</a>
-        </li>
-    <% end %>
-</ul>
+    <a href="/patches/<%= patch['patch_id'] %>/edit">Edit Patch</a>
+    <a href="/patches/<%= patch['patch_id'] %>/songs/new">Add a song</a>
+    <br>
+    <br>
+    <ul>
+        <%songs.each do |song| %>
+            <li id="song">
+                <%= song['song_name'] %>
+                -
+                <%= song['artist'] %>
+                <br>
+                <%= song['album'] %>,
+                <%= song['year'] %>
+                <br>
+                <br>
+                <%= song['song_desc'] %>
+                <a href="/patches/<%= patch['patch_id'] %>/songs/<%= song['song_id']%>">Edit this song</a>
+                <br>
+                <br>
+            </li>
+        <% end %>
+    </ul>
+    <script src="/javascripts/application.js"></script>
+</body>
+</html>
