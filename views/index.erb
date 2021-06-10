@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
     <a href="/patches">View Patches</a>
-    <a href="/patches/new">Create a patch</a>
 
-    <a href="/login">Sign In</a>
+    <% if !logged_in? %>
+
+        <a href="/login">Sign In</a>
+
+    <% end  %>
     <a href="/signup">Sign Up</a>
-
-    <form action="/signup" method="post">
-        <label for="">Username</label>
-        <input type="text" name="user_name">
-
-        <label for="">Password</label>
-        <input type="text" name="password">
-    </form>
 </body>
 </html>

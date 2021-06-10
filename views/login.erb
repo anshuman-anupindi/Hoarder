@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-    <h1>Create a Theme</h1>
-
-    <form action="/themes" method="post">
-        <label for="">Theme Name</label>
-        <input type="text" name="theme_name">
-
-        <label for="">Main Image</label>
-        <input type="text" name="main_img_url">
-
-        <label for="">Background Image</label>
-        <input type="text" name="bg_img_url">
-
-        <button>Confirm</button>
+    <h2>Login</h2>
+    <form action="/session" method="post">
+        <label for="">Username</label>
+        <input type="text" name="user_name">
+        <label for="">Password</label>
+        <input type="password" name="password">
+        <button>Log In</button>
     </form>
 </body>
 </html>

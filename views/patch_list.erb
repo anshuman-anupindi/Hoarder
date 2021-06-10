@@ -1,16 +1,25 @@
-<h2>Your Patchwork</h2>
-
-
-<ul>
-    <a href="/patches/new">Create a Patch</a>
-    <%patches.each.with_index do |patch, index| %>
-        <li>
-            <a href="/patches/<%=patch['patch_id'] %>"><%=patch['patch_name'] %></a>
-            <%=patch['patch_name'] %>
-            <br>
-            <%=patch['patch_desc'] %>
-            <br>
-            <img src="<%= themes[index]['main_img_url']%>" alt="mainimg">
-        </li>
-    <% end %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Your Patchwork</h2>
+    <ul>
+        <a href="/patches/new">Create a Patch</a>
+        <%patches.each.with_index do |patch, index| %>
+            <li>
+                <a href="/patches/<%=patch['patch_id'] %>"><%=patch['patch_name'] %></a>
+                <br>
+                <%=patch['patch_desc'] %>
+                <br>
+                <img height="100px" width="100px" src="<%= themes[index]['main_img_url']%>" alt="mainimg">
+            </li>
+        <% end %>
+    </ul>
+</body>
+</html>
