@@ -1,17 +1,29 @@
-<h1>Theme Editor</h1>
-<h2>Edit '<%= theme['theme_name'] %>'</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    <h1>Theme Editor</h1>
+    <h2>Edit '<%= theme['theme_name'] %>'</h2>
 
-<form action="/themes/<%= theme['theme_id'] %>/edit" method="post">
-    <input type="hidden" name="_method" value="put">
+    <form action="/themes/<%= theme['theme_id'] %>/edit" method="post">
+        <input type="hidden" name="_method" value="put">
 
-    <label for="">Theme Name</label>
-    <input type="text" name="theme_name" value="<%= theme['theme_name'] %>">
+        <label for="">Theme Name</label>
+        <input type="text" name="theme_name" value="<%= theme['theme_name'] %>">
 
-    <label for="">Main Image</label>
-    <input type="text" name="main_img_url" value="<%= theme['main_img_url'] %>">
+        <label for="">Main Image</label>
+        <input type="text" name="main_img_url" value="<%= theme['main_img_url'] %>">
 
-    <label for="">Background Image</label>
-    <input type="text" name="bg_img_url" value="<%= theme['bg_img_url'] %>">
+        <label for="">Background Image</label>
+        <input type="text" name="bg_img_url" value="<%= theme['bg_img_url'] %>">
 
-    <button>Confirm</button>
-</form>
+        <button>Confirm</button>
+    </form>
+</body>
+</html>

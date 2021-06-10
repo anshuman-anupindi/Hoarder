@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1><%= patch['patch_name'] %></h1>
+    <p hidden><%= theme['bg_img_url'] %></p>
     <img src="<%= theme['main_img_url'] %>" height="120px" width="120px">
     <h2><%= patch['patch_desc'] %></h2>
     <form action="/patches/<%= patch['patch_id'] %>" method="post">

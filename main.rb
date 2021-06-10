@@ -58,7 +58,7 @@ get '/patches/new' do
   erb :new_patch_form, locals: {themes: themes}
 end
 
-# submit created patch
+# Confirm created patch
 
 post '/patches' do
   redirect '/login' unless logged_in?
@@ -154,7 +154,7 @@ get '/patches/:patch_id/songs/:song_id' do
   erb :edit_song_form, locals: {song_id: params['song_id'], patch_id: params['patch_id'], song: song}
 end
 
-# submit edited song
+# Confirm edited song
 
 put '/patches/:patch_id/songs/:song_id' do
   redirect '/login' unless logged_in?
@@ -226,7 +226,7 @@ put '/themes/:id/edit' do
   redirect '/themes'
 end
 
-# submit new theme
+# Confirm new theme
 
 post '/themes' do
   redirect '/login' unless logged_in?
