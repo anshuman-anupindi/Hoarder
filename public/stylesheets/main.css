@@ -8,3 +8,11 @@
 header {
     display: inline;
 }
+
+nav {
+    display: inline;
+}
+
+body {
+    background-color: orange;
+}
