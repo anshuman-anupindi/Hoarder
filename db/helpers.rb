@@ -1,5 +1,5 @@
 require 'pg'
-require 'pry'
+require 'pry' if development?
 require 'bcrypt'
 
 def run_sql(sql, params = [])
